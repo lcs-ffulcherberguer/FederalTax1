@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     //Mark: Properties
     
+    //Button Pressed as a false boolean
+    var buttonPressed: Bool = false
     
     @IBOutlet weak var nameEntered: UITextField!
     
@@ -35,13 +37,24 @@ class ViewController: UIViewController {
     @IBAction func calculateTax (sender:Any){
         
         //Check if user entered text in textfield
-        guard let nameEntered  = nameEntered.text, nameEnteredString != ""  else  {
-            errorLabelname.text = "Please enter a name"
-        }
+        if buttonPressed == false {
+            guard let nameEntered  = nameEntered.text, nameEntered != ""  else  {
+            errorLabelname.text = "Please enter a name!"
+        return
             
-        }
-    
+            }
+         //Check if there is a Anual Income entered
+            if buttonPressed == false {
+                guard let grossAnualIncome = grossAnualIncome.text, grossAnualIncome != "" else {
+                    grossAnualIncome.text = "Please enter your Anual Income!"
+                    return
+                }
+            }
 
 
+
+
+            
 }
-
+}
+}
