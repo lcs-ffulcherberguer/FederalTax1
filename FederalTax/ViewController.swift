@@ -33,28 +33,31 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    //  Get the amount of bill value from the text field
+    //  Get the amount of bill value from the textfield
     @IBAction func calculateTax (sender:Any){
         
-        //Check if user entered text in textfield
+        //Check if user entered name in textfield
         if buttonPressed == false {
             guard let nameEntered  = nameEntered.text, nameEntered != ""  else  {
             errorLabelname.text = "Please enter a name!"
         return
             
             }
-         //Check if there is a Anual Income entered
+        
+        //Check if user entered Anual Income in textfield
             if buttonPressed == false {
                 guard let grossAnualIncome = grossAnualIncome.text, grossAnualIncome != "" else {
-                    grossAnualIncome.text = "Please enter your Anual Income!"
+                    errorLabelname.text = "Please enter your Anual Income!"
                     return
-                }
+                
             }
-
-
-
+            
+                
+                }
 
             
 }
 }
 }
+
+
