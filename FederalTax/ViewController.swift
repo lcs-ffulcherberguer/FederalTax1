@@ -36,6 +36,10 @@ class ViewController: UIViewController {
     //  Get the amount of bill value from the textfield
     @IBAction func calculateTax (sender:Any){
         
+        
+        
+
+       
         //Check if user entered name in textfield
         if buttonPressed == false {
             guard let nameEntered  = nameEntered.text, nameEntered != ""  else  {
@@ -53,10 +57,32 @@ class ViewController: UIViewController {
             }
             
                 
+                // ensure that the user entered a value greater than zero
+                if Double(grossAnualIncome)! > 0.0{
+                   
+                    
+                    
+                 switch (Double(grossAnualIncome)!){
+                 case 0 ... 47629:
+                    let tax = 1.15 * Double(grossAnualIncome)!
+                 case 47630 ... 95259:
+                    let tax = 1.205 * Double(grossAnualIncome)!
+                 case 95260 ... 147667:
+                    let tax = 1.206 * Double(grossAnualIncome)!
+                 case  147668 ... 210371:
+                    let tax = 1.209 * Double(grossAnualIncome)!
+                
+                 default:
+                    let tax = 1.303 * Double(grossAnualIncome)!
                 }
-
-            
 }
+}
+    
+   
+    
+    }
+    
+     
 }
 }
 
