@@ -9,11 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     //Mark: Properties
     
-    //Button Pressed as a false boolean
-    var buttonPressed: Bool = false
+    
+    // MARK: Properties
+    // Variables that will be used
+    // Define tax for first 47,630$ of income eg. (7,144.5 is 47,630 * 0.15)
+    let federalTax1 = 7144.5
+    // Define tax for the next 47,629$ of income
+    let federalTax2 = 9763.945
+    // Define tax for the next 52,408$ of income
+    let federalTax3 = 13626.08
+    // Define tax for the next 62,704$ of income
+    let federalTax4 = 18184.16
+    
+    @IBOutlet weak var taxLabel: UITextField!
     
     @IBOutlet weak var nameEntered: UITextField!
     
@@ -21,14 +32,14 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var errorLabelname: UILabel!
     
-    @IBOutlet weak var errorLabelIncome: UILabel!
+    
     
     
     //Mark: Methods
     
     
     //Runs as soon as the view becomes visible to the user
-     override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
@@ -38,52 +49,113 @@ class ViewController: UIViewController {
         
         
         
-
-       
-        //Check if user entered name in textfield
-        if buttonPressed == false {
-            guard let nameEntered  = nameEntered.text, nameEntered != ""  else  {
-            errorLabelname.text = "Please enter a name!"
-        return
-            
-            }
         
-        //Check if user entered Anual Income in textfield
-            if buttonPressed == false {
-                guard let grossAnualIncome = grossAnualIncome.text, grossAnualIncome != "" else {
-                    errorLabelname.text = "Please enter your Anual Income!"
-                    return
+        
+        //Check if user entered name in textfield
+        guard let nameEntered  = nameEntered.text, nameEntered != ""  else  {
+            errorLabelname.text = "ERROR. Please enter a name!"
+            return
+            
+        }
+        
+        // Get as a string
+        guard let grossAnualIncome = grossAnualIncome.text, grossAnualIncome != "" else {
+            errorLabelname.text = "ERROR. Please enter your Anual Income!"
+            return
+            
+        }
+        
+        // Get as a decimal value (Double)
+        guard let grossAnnualIncomeDouble = Double(grossAnualIncome) else {
+            errorLabelname.text = "ERROR. Please enter your income as a number."
+            return
+        }
+        
+        // ensure that the user entered a value greater than zero
+        if grossAnnualIncomeDouble > 0.0{
+            
+            
+            
+            // Calculate tax owing using a switch statement
+            switch grossAnnualIncomeDouble{
+            case 0...47_630:
+                // Multiply income by tax rate for this range (since it is the first range, we do not need to add tax together)
+                let totalTax = grossAnnualIncomeDouble * 0.15
+                // Round to two decimal places
+                let totalTaxRounded = (round(100*totalTax)/100)
+                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                let taxRate = totalTax/grossAnnualIncomeDouble*100
+                // Round tax rate to one decimal place
+                let taxRateRounded = (round(10*taxRate)/10)
+                // Display each text to the view in each label
+                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
+                
+            case 47630 ... 95259:
+                let totalTax = federalTax1 + grossAnnualIncomeDouble
+                // Round to two decimal places
+                let totalTaxRounded = (round(100*totalTax)/100)
+                // Find the tax rate by dividing total tax by income
+                // After multiplying it by 100 because it is a percentage
+                let taxRate = totalTax/grossAnnualIncomeDouble*100
+                // Round tax rate to one decimal place
+                let taxRateRounded = (round(10*taxRate)/10)
+                // Display each text to the view in each label
+                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
+                
+                
+            case 95260 ... 147667:
+                let totalTax = federalTax1 + federalTax2 + grossAnnualIncomeDouble
+                // Round to two decimal places
+                let totalTaxRounded = (round(100*totalTax)/100)
+                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                let taxRate = totalTax/grossAnnualIncomeDouble*100
+                // Round tax rate to one decimal place
+                let taxRateRounded = (round(10*taxRate)/10)
+                // Display each text to the view in each label
+                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
+                
+                
+            case  147668 ... 210371:
+                let totalTax = federalTax1 + federalTax2 + federalTax3 + grossAnnualIncomeDouble
+                // Round to two decimal places
+                let totalTaxRounded = (round(100*totalTax)/100)
+                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                let taxRate = totalTax/grossAnnualIncomeDouble*100
+                // Round tax rate to one decimal place
+                let taxRateRounded = (round(10*taxRate)/10)
+                // Display each text to the view in each label
+                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
+                
+                
+            default:
+                let totalTax = federalTax1 + federalTax2 + federalTax3 + federalTax4 + grossAnnualIncomeDouble
+                // Round to two decimal places
+                let totalTaxRounded = (round(100*totalTax)/100)
+                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                let taxRate = totalTax/grossAnnualIncomeDouble*100
+                // Round tax rate to one decimal place
+                let taxRateRounded = (round(10*taxRate)/10)
+                // Display each text to the view in each label
+                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
+                
                 
             }
             
-                
-                // ensure that the user entered a value greater than zero
-                if Double(grossAnualIncome)! > 0.0{
-                   
-                    
-                    
-                 switch (Double(grossAnualIncome)!){
-                 case 0 ... 47629:
-                    let tax = 1.15 * Double(grossAnualIncome)!
-                 case 47630 ... 95259:
-                    let tax = 1.205 * Double(grossAnualIncome)!
-                 case 95260 ... 147667:
-                    let tax = 1.206 * Double(grossAnualIncome)!
-                 case  147668 ... 210371:
-                    let tax = 1.209 * Double(grossAnualIncome)!
-                
-                 default:
-                    let tax = 1.303 * Double(grossAnualIncome)!
-                }
-}
-}
-    
-   
-    
+            
+            
+        }
+        
     }
     
-     
+    
+    
 }
-}
+
+
 
 
