@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     let federalTax4 = 18184.16
     
     
+    //Made outlets to connect on my main storyboard
     @IBOutlet weak var taxLabel: UILabel!
     
     @IBOutlet weak var nameEntered: UITextField!
