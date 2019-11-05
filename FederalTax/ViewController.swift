@@ -24,7 +24,8 @@ class ViewController: UIViewController {
     // Define tax for the next 62,704$ of income
     let federalTax4 = 18184.16
     
-    @IBOutlet weak var taxLabel: UITextField!
+    
+    @IBOutlet weak var taxLabel: UILabel!
     
     @IBOutlet weak var nameEntered: UITextField!
     
@@ -76,19 +77,20 @@ class ViewController: UIViewController {
             
             
             
-            // Calculate tax owing using a switch statement
+            // Calculate tax using switch statement
             switch grossAnnualIncomeDouble{
             case 0...47_630:
-                // Multiply income by tax rate for this range (since it is the first range, we do not need to add tax together)
+                // Multiply income by tax rate for this range
                 let totalTax = grossAnnualIncomeDouble * 0.15
                 // Round to two decimal places
                 let totalTaxRounded = (round(100*totalTax)/100)
-                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                // Find the tax rate by dividing total tax by income
+                // After multiplying it by 100 because it is a percentage
                 let taxRate = totalTax/grossAnnualIncomeDouble*100
                 // Round tax rate to one decimal place
                 let taxRateRounded = (round(10*taxRate)/10)
                 // Display each text to the view in each label
-                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                taxLabel.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
                 errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
                 
             case 47630 ... 95259:
@@ -101,7 +103,7 @@ class ViewController: UIViewController {
                 // Round tax rate to one decimal place
                 let taxRateRounded = (round(10*taxRate)/10)
                 // Display each text to the view in each label
-                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                taxLabel.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
                 errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
                 
                 
@@ -109,12 +111,13 @@ class ViewController: UIViewController {
                 let totalTax = federalTax1 + federalTax2 + grossAnnualIncomeDouble
                 // Round to two decimal places
                 let totalTaxRounded = (round(100*totalTax)/100)
-                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                // Find the tax rate by dividing total tax by income
+                // After multiplying it by 100 because it is a percentage
                 let taxRate = totalTax/grossAnnualIncomeDouble*100
                 // Round tax rate to one decimal place
                 let taxRateRounded = (round(10*taxRate)/10)
                 // Display each text to the view in each label
-                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                taxLabel.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
                 errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
                 
                 
@@ -122,12 +125,13 @@ class ViewController: UIViewController {
                 let totalTax = federalTax1 + federalTax2 + federalTax3 + grossAnnualIncomeDouble
                 // Round to two decimal places
                 let totalTaxRounded = (round(100*totalTax)/100)
-                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                // Find the tax rate by dividing total tax by income
+                // After multiplying it by 100 because it is a percentage
                 let taxRate = totalTax/grossAnnualIncomeDouble*100
                 // Round tax rate to one decimal place
                 let taxRateRounded = (round(10*taxRate)/10)
                 // Display each text to the view in each label
-                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                taxLabel.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
                 errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
                 
                 
@@ -135,12 +139,13 @@ class ViewController: UIViewController {
                 let totalTax = federalTax1 + federalTax2 + federalTax3 + federalTax4 + grossAnnualIncomeDouble
                 // Round to two decimal places
                 let totalTaxRounded = (round(100*totalTax)/100)
-                // Find the tax rate by dividing total tax by income (multiplying it by 100 because it is a percentage)
+                // Find the tax rate by dividing total tax by income
+                // After multiplying it by 100 because it is a percentage
                 let taxRate = totalTax/grossAnnualIncomeDouble*100
                 // Round tax rate to one decimal place
                 let taxRateRounded = (round(10*taxRate)/10)
                 // Display each text to the view in each label
-                errorLabelname.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
+                taxLabel.text = "\(grossAnualIncome) your federal tax owing is \(totalTaxRounded)$."
                 errorLabelname.text = "Effective tax rate is: \(taxRateRounded)%."
                 
                 
